@@ -2,6 +2,9 @@ const sizeSlider = document.querySelector('.size-slider');
 const grid = document.querySelector('.grid');
 const colorPicker = document.querySelector('.color-picker');
 
+let colorMode = true;
+let rainbowMode = false;
+
 // Creating a grid element
 function createGridElement() {
     let gridElement = document.createElement('div');
@@ -31,5 +34,9 @@ for (let i = 1; i < sizeSlider.value; i++) {
 // Drawing on the grid with a chosen color
 const gridElements = document.querySelectorAll('.grid-element');
 gridElements.forEach((element) => element.addEventListener('mouseover', () => {
-    element.style.backgroundColor = colorPicker.value;
+    if (colorMode == true) {
+        element.style.backgroundColor = colorPicker.value;
+    } else if (rainbowMode == true) {
+        // paint with a random color
+    }
 }));
