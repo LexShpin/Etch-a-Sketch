@@ -1,5 +1,6 @@
 const sizeSlider = document.querySelector('.size-slider');
 const grid = document.querySelector('.grid');
+const colorPicker = document.querySelector('.color-picker');
 
 function createGridElement() {
     let gridElement = document.createElement('div');
@@ -27,5 +28,5 @@ for (let i = 1; i < sizeSlider.value; i++) {
 
 const gridElements = document.querySelectorAll('.grid-element');
 gridElements.forEach((element) => element.addEventListener('mouseover', () => {
-    element.style.backgroundColor = 'red';
+    element.style.backgroundColor = colorPicker.value;
 }));
