@@ -1,5 +1,7 @@
 const sizeSlider = document.querySelector('.size-slider');
 const grid = document.querySelector('.grid');
+const gridSlider = document.querySelector('#gridSlider');
+const gridSize = document.querySelector('#gridSize');
 const colorPicker = document.querySelector('.color-picker');
 
 const colorBtn = document.querySelector('.color-mode');
@@ -11,15 +13,25 @@ let colorMode = true;
 let rainbowMode = false;
 let eraserMode = false;
 
+// Setting the grid size display to be dynamic
+gridSize.textContent = `${sizeSlider.value}x${sizeSlider.value}`;
+
+
+
+console.log(gridSlider.value);
+
 // Creating a grid element
 function createGridElement() {
+
+    // grid
+
     let gridElement = document.createElement('div');
 
     gridElement.classList.add('grid-element');
 
-    gridElement.style.width = `${sizeSlider.value * 2}px`;
-    gridElement.style.height = `${sizeSlider.value * 2}px`;
-
+    gridElement.style.width = `${500 / sizeSlider.value}px`;
+    gridElement.style.height = `${500 / sizeSlider.value}px`;
+    
     gridElement.style.border = '1px solid black';
 
     grid.appendChild(gridElement);
@@ -27,15 +39,22 @@ function createGridElement() {
     return;
 }
 
-// Generating the grid
-for (let i = 1; i < sizeSlider.value; i++) {
-    
-    createGridElement();
-
-    for (let j = 1; j < sizeSlider.value; j++) {
+// Generating the initial grid
+function generateGrid() {
+    for (let i = 0; i < sizeSlider.value; i++) {
+        
+        for (let j = 1; j <= sizeSlider.value; j++) {
+            createGridElement();
+        }
+        
         createGridElement();
-    }
+    }    
 }
+
+generateGrid();
+
+
+
 
 // Switching between the color, rainbow and eraser 
 colorBtn.addEventListener('click', () => {
@@ -79,6 +98,25 @@ gridElements.forEach((element) => element.addEventListener('mouseover', () => {
         element.style.backgroundColor = '#ffff';
     }
 }));
+
+// Regenerating the grid
+gridSlider.addEventListener('input', () => {
+
+    // Erase all the elements and regenerate the grid
+    while(grid.firstChild) {
+        grid.removeChild(grid.firstChild);
+    }
+
+    generateGrid();
+
+    // Adjust the size of the elements to new grid
+    gridElements.forEach((element) => {
+        element.style.width = `${500 / sizeSlider.value}px`;
+        element.style.height = `${500 / sizeSlider.value}px`;
+    });
+
+    gridSize.textContent = `${gridSlider.value}x${gridSlider.value}`;
+});
 
 // Clearing all painting from elements
 clearBtn.addEventListener('click', () => {
