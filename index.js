@@ -43,7 +43,7 @@ function createGridElement() {
 function generateGrid() {
     for (let i = 0; i < sizeSlider.value; i++) {
         
-        for (let j = 1; j <= sizeSlider.value; j++) {
+        for (let j = 1; j < sizeSlider.value; j++) {
             createGridElement();
         }
         
@@ -88,7 +88,7 @@ function generateRandomColor() {
 }
 
 // Drawing on the grid with a chosen color
-const gridElements = document.querySelectorAll('.grid-element');
+let gridElements = document.querySelectorAll('.grid-element');
 gridElements.forEach((element) => element.addEventListener('mouseover', () => {
     if (colorMode == true) {
         element.style.backgroundColor = colorPicker.value;
@@ -117,6 +117,17 @@ gridSlider.addEventListener('input', () => {
 
     gridSize.textContent = `${gridSlider.value}x${gridSlider.value}`;
 });
+
+gridElements = document.querySelectorAll('.grid-element');
+gridElements.forEach((element) => element.addEventListener('mouseover', () => {
+    if (colorMode == true) {
+        element.style.backgroundColor = colorPicker.value;
+    } else if (rainbowMode == true) {
+        element.style.backgroundColor = generateRandomColor();
+    } else if (eraserMode == true) {
+        element.style.backgroundColor = '#ffff';
+    }
+}));
 
 // Clearing all painting from elements
 clearBtn.addEventListener('click', () => {

@@ -1,9 +1,23 @@
+@font-face {
+    font-family: 'Press Start 2P';
+    src: url('./assets/fonts/Press_Start_2P/PressStart2P-Regular.ttf');
+}
+
 * {
     box-sizing: border-box;
 }
 
+.heading {
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    margin-top: 25px;
+}
+
 .content {
     display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-right: 175px;
 }
 
 .sidebar {
@@ -11,15 +25,17 @@
     flex-direction: column;
 }
 
+/* .grid-wrapper {
+    border: 10px solid black;
+    border-radius: 4px;
+} */
+
 .grid {
     width: 500px;
     height: 500px;
     display: flex;
     flex-wrap: wrap;
-    /* grid-template-columns: repeat(44, 1fr);
-    grid-template-rows: repeat(44, 1fr); */
     padding: 0;
-    margin: 0;
 }
 
 .grid-elemt {
