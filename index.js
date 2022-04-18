@@ -89,15 +89,20 @@ function generateRandomColor() {
 
 // Drawing on the grid with a chosen color
 let gridElements = document.querySelectorAll('.grid-element');
-gridElements.forEach((element) => element.addEventListener('mouseover', () => {
-    if (colorMode == true) {
-        element.style.backgroundColor = colorPicker.value;
-    } else if (rainbowMode == true) {
-        element.style.backgroundColor = generateRandomColor();
-    } else if (eraserMode == true) {
-        element.style.backgroundColor = '#ffff';
-    }
-}));
+
+function drawOverGrid() {
+    gridElements.forEach((element) => element.addEventListener('mouseover', () => {
+        if (colorMode == true) {
+            element.style.backgroundColor = colorPicker.value;
+        } else if (rainbowMode == true) {
+            element.style.backgroundColor = generateRandomColor();
+        } else if (eraserMode == true) {
+            element.style.backgroundColor = '#ffff';
+        }
+    }));
+}
+
+drawOverGrid();
 
 // Regenerating the grid
 gridSlider.addEventListener('input', () => {
@@ -115,19 +120,11 @@ gridSlider.addEventListener('input', () => {
         element.style.height = `${500 / sizeSlider.value}px`;
     });
 
+    gridElements = document.querySelectorAll('.grid-element');
+    drawOverGrid();
+
     gridSize.textContent = `${gridSlider.value}x${gridSlider.value}`;
 });
-
-gridElements = document.querySelectorAll('.grid-element');
-gridElements.forEach((element) => element.addEventListener('mouseover', () => {
-    if (colorMode == true) {
-        element.style.backgroundColor = colorPicker.value;
-    } else if (rainbowMode == true) {
-        element.style.backgroundColor = generateRandomColor();
-    } else if (eraserMode == true) {
-        element.style.backgroundColor = '#ffff';
-    }
-}));
 
 // Clearing all painting from elements
 clearBtn.addEventListener('click', () => {
