@@ -23,12 +23,13 @@
 .sidebar {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 
-/* .grid-wrapper {
+.grid-wrapper {
     border: 10px solid black;
     border-radius: 4px;
-} */
+}
 
 .grid {
     width: 500px;
@@ -41,4 +42,17 @@
 .grid-elemt {
     margin: 0;
     padding: 0;
+}
+
+.color-picker {
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    transition: .07s all ease;
+}
+
+.color-picker:hover {
+    transform: scale(1.1);
 }
