@@ -4,6 +4,7 @@ const gridSlider = document.querySelector('#gridSlider');
 const gridSize = document.querySelector('#gridSize');
 const colorPicker = document.querySelector('.color-picker');
 
+const sidebarBtns = document.querySelectorAll('button');
 const colorBtn = document.querySelector('.color-mode');
 const rainbowBtn = document.querySelector('.rainbow-mode');
 const eraserBtn = document.querySelector('.eraser');
@@ -33,6 +34,7 @@ function createGridElement() {
     gridElement.style.height = `${500 / sizeSlider.value}px`;
     
     gridElement.style.border = '1px solid black';
+    gridElement.style.backgroundColor = '#ffff';
 
     grid.appendChild(gridElement);
 
@@ -129,4 +131,23 @@ gridSlider.addEventListener('input', () => {
 // Clearing all painting from elements
 clearBtn.addEventListener('click', () => {
     gridElements.forEach((element) => element.style.backgroundColor = "#ffff");
+});
+
+// Make sidebar buttons active
+colorBtn.addEventListener('click', () => {
+    colorBtn.classList.add('active');
+    rainbowBtn.classList.remove('active');
+    eraserBtn.classList.remove('active');
+});
+
+rainbowBtn.addEventListener('click', () => {
+    colorBtn.classList.remove('active');
+    rainbowBtn.classList.add('active');
+    eraserBtn.classList.remove('active');
+});
+
+eraserBtn.addEventListener('click', () => {
+    colorBtn.classList.remove('active');
+    rainbowBtn.classList.remove('active');
+    eraserBtn.classList.add('active');
 });
